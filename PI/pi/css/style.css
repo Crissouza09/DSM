@@ -1,0 +1,220 @@
+/* Reset de margens e configuração global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  /* Define a imagem como fundo */
+  background-image: url("../imagens/TelaBemVindo.png");
+  background-size: cover; /* Faz a imagem cobrir toda a tela */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat;
+  overflow: hidden; /* Evita barras de rolagem desnecessárias */
+}
+
+.split-layout {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Opcional: Se você quiser que o lado direito fique transparente 
+   para mostrar a imagem de fundo que você já colocou no body */
+.right-panel {
+  flex: 1;
+  /* Remova qualquer background-color daqui para deixar o fundo aparecer */
+}
+
+.left-panel {
+  width: 40%; /* Ajuste conforme necessário */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px;
+}
+
+/* Logo no topo esquerdo */
+.logo {
+  position: absolute;
+  top: 40px;
+  left: 50px;
+}
+
+.content-box {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Tipografia dos títulos */
+.content-box h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.content-box p {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  margin-bottom: 50px;
+}
+
+/* Botão Principal */
+.btn-primary {
+  width: 100%;
+  padding: 16px;
+  border-radius: 30px;
+  background-color: #48237e;
+  border: 1px solid #5d3698;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #552d92;
+  transform: translateY(-2px);
+}
+
+/* Linha divisória com degradê nas pontas */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  margin: 40px 0;
+}
+
+/* Botões Secundários */
+.btn-secondary {
+  width: 75%;
+  padding: 12px;
+  border-radius: 25px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(69, 33, 120, 0.4);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+/* ================= PAINEL DIREITO ================= */
+.right-panel {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Barra de Pesquisa flutuante */
+.search-bar {
+  position: absolute;
+  top: 60px;
+  right: 15%; /* Posicionado mais à direita */
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(100, 50, 200, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  z-index: 10;
+}
+
+.search-bar svg {
+  margin-right: 10px;
+  color: #6138a3;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  color: #444;
+  width: 220px;
+  font-weight: 500;
+}
+
+.search-bar input::placeholder {
+  color: #552d92;
+  font-weight: 400;
+}
+
+/* Pop-up centralizado e compacto */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fundo escuro leve */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.popup-box h3 {
+  color: #6a349c;
+  margin-bottom: 10px;
+}
+.btn-fechar {
+  margin-top: 20px;
+  padding: 8px 20px;
+  background: #6a349c;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}

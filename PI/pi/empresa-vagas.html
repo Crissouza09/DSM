@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vagas - PathX</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #fcfbfe;
+        color: #333;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .navbar {
+        background-color: #23103a;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+      .back-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #562885;
+      }
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-weight: 300;
+        font-size: 1rem;
+        transition: 0.3s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #b179eb;
+        font-weight: 400;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px 20px;
+      }
+      .search-bar {
+        background: white;
+        border-radius: 30px;
+        padding: 12px 25px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid #eee;
+        margin-bottom: 20px;
+      }
+      .search-bar input {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-size: 0.95rem;
+        color: #333;
+      }
+
+      .filters {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 40px;
+        justify-content: space-between;
+      }
+      .filter-btn {
+        background-color: #6a349c;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 20px;
+        border: none;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-criar {
+        padding: 10px 30px;
+        border-radius: 25px;
+        border: 1px solid #b179eb;
+        background: transparent;
+        color: #b179eb;
+        cursor: pointer;
+      }
+
+      .vaga-row {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        padding: 20px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        border: 2px solid #6a349c;
+      }
+      .action-btns {
+        display: flex;
+        gap: 15px;
+      }
+      .btn-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 1px solid rgb(122, 6, 255);
+        background: transparent;
+        cursor: pointer;
+      }
+
+      /* Modais */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal-content {
+        background: white;
+        border-radius: 30px;
+        padding: 40px;
+        width: 90%;
+        max-width: 900px;
+        border: 2px solid #6a349c;
+        position: relative;
+      }
+      .modal-input {
+        width: 100%;
+        padding: 15px;
+        border-radius: 15px;
+        border: 2px solid #6a349c;
+        outline: none;
+        margin-bottom: 15px;
+      }
+      .modal-textarea {
+        width: 100%;
+        padding: 15px;
+        border-radius: 15px;
+        border: 2px solid #6a349c;
+        outline: none;
+        resize: none;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="cadempresa.html" class="back-btn"
+          ><svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M19 12H5"></path>
+            <polyline points="12 19 5 12 12 5"></polyline></svg
+        ></a>
+        <div class="nav-links">
+          <a href="#">Inicio</a> <a href="#" class="active">Vagas</a>
+          <a href="#">Empresas</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <span>Empresa</span>
+        <div class="user-avatar">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+       <div class="search-bar">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="text"
+          placeholder="pesquise por vagas ou palavras-chave..."
+        />
+      </div>
+
+      <div class="filters">
+        <div style="display: flex; gap: 15px">
+          <button class="filter-btn">Local</button>
+          <button class="filter-btn">Publicação</button>
+          <button class="filter-btn">Jornada</button>
+          <button class="filter-btn">Área</button>
+        </div>
+        <button
+          class="btn-criar"
+          onclick="document.getElementById('modalCriar').style.display = 'flex'"
+        >
+          Criar Vaga
+        </button>
+      </div>
+
+      <div class="vaga-row">
+        <div class="vaga-info"><span>Auxiliar de Produção</span></div>
+        <div class="action-btns">
+          <button
+            class="btn-icon"
+            onclick="
+              abrirEditar(
+                'Auxiliar de Produção',
+                'Descrição teste',
+                'Requisitos teste',
+                'R$ 2000',
+                'VR/VT',
+              )
+            "
+          >
+            ✎
+          </button>
+          <button class="btn-icon" onclick="document.getElementById('modalExcluir').style.display='flex'">🗑</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalCriar" class="modal-overlay">
+      <div class="modal-content">
+        <div
+          style="cursor: pointer; text-align: right"
+          onclick="this.parentElement.parentElement.style.display = 'none'"
+        >
+          ✕
+        </div>
+        <div style="display: flex; gap: 40px">
+          <div style="flex: 0 0 300px">
+            <div
+              style="
+                width: 300px;
+                height: 300px;
+                border: 2px solid #6a349c;
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              Imagem
+            </div>
+            <button class="btn-criar" style="width: 100%; margin-top: 15px">
+              Carregar Imagem
+            </button>
+          </div>
+          <div style="flex: 1">
+            <input type="text" placeholder="Titulo" class="modal-input" />
+            <textarea
+              placeholder="Descrição"
+              class="modal-textarea"
+              style="height: 120px"
+            ></textarea>
+            <input type="text" placeholder="Salário" class="modal-input" />
+          </div>
+        </div>
+        <br>
+        <button
+          class="btn-criar"
+          style="width: 100%; background: #6a349c; color: white"
+        >
+          Criar Vaga
+        </button>
+      </div>
+    </div>
+
+    <div id="modalEditar" class="modal-overlay">
+      <div class="modal-content">
+        <div
+          style="cursor: pointer; text-align: right"
+          onclick="
+            document.getElementById('modalEditar').style.display = 'none'
+          "
+        >
+          ✕
+        </div>
+        <div style="display: flex; gap: 40px">
+          <div style="flex: 0 0 300px">
+            <div
+              style="
+                width: 300px;
+                height: 300px;
+                border: 2px solid #6a349c;
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              Imagem
+            </div>
+            <button class="btn-criar" style="width: 100%; margin-top: 15px">
+              Carregar Imagem
+            </button>
+          </div>
+          <div style="flex: 1">
+            <input type="text" id="edit-titulo" class="modal-input" />
+            <textarea
+              id="edit-desc"
+              class="modal-textarea"
+              style="height: 120px"
+            ></textarea>
+            <input type="text" id="edit-sal" class="modal-input" />
+          </div>
+        </div>
+        <br>
+        <button
+          class="btn-criar"
+          style="width: 100%; background: #6a349c; color: white"
+        >
+          Salvar Alterações
+        </button>
+      </div>
+    </div>
+<div id="modalExcluir" class="modal-overlay">
+  <div class="modal-content" style="max-width: 400px; text-align: center;">
+    <h3>Confirmar exclusão?</h3>
+    <p style="margin: 20px 0; color: #666;">Esta ação não poderá ser desfeita.</p>
+    <div style="display: flex; gap: 15px;">
+      <button class="btn-criar" style="flex: 1; border-color: #6a349c; color: #6a349c;" onclick="document.getElementById('modalExcluir').style.display='none'">Não</button>
+      <button class="btn-criar" style="flex: 1; background: #6a349c; color: white; border: none;" onclick="excluirVaga()">Sim</button>
+    </div>
+  </div>
+</div>
+    <script>
+      function abrirEditar(titulo, desc, req, sal, ben) {
+        document.getElementById("edit-titulo").value = titulo;
+        document.getElementById("edit-desc").value = desc;
+        document.getElementById("edit-sal").value = sal;
+        document.getElementById("modalEditar").style.display = "flex";
+      }
+      function excluirVaga() {
+    // Aqui você colocaria o código para remover a vaga do banco de dados ou da lista
+    // Por enquanto, apenas fecha o modal:
+    document.getElementById('modalExcluir').style.display = 'none';
+    alert("Vaga excluída com sucesso!");
+  }
+    </script>
+  </body>
+</html>

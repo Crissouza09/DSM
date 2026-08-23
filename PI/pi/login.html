@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PathX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Aplicando a imagem de fundo conforme solicitado */
+            background-image: url(./imagens/fundologin.png);/* Altere para .png se o seu arquivo for png */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #1a0832; /* Cor de fallback caso a imagem não carregue */
+            position: relative;
+        }
+
+        /* Botão de Voltar (Canto superior esquerdo) */
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Efeito Glassmorphism (Cartão de Login) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Logo PathX */
+        .logo-container {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .glass-card h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* Campos de Input */
+        .input-group {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            height: 50px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            padding-left: 65px;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .input-group input::placeholder {
+            color: #aaa;
+            font-weight: 300;
+        }
+
+        /* Círculo roxo com ícone dentro do input */
+        .icon-circle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(85, 45, 146, 0.85); /* Roxo escuro translúcido */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            pointer-events: none;
+        }
+
+        /* Linha divisória fina */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            margin: 5px 0 15px 0;
+        }
+
+        /* Opções (Lembrar-me e Esqueci a senha) */
+        .form-options {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-options label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .form-options input[type="radio"] {
+            margin-right: 8px;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            outline: none;
+        }
+
+        .form-options input[type="radio"]:checked {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-options a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .form-options a:hover {
+            color: white;
+        }
+
+        /* Botão Logar */
+        .btn-logar {
+            padding: 12px 50px;
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .btn-logar:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Link Cadastre-se */
+        .register-text {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .register-text a {
+            color: #9d74d6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"></path>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+    </a>
+
+    <div class="glass-card">
+        
+        <div class="logo-container">
+            <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 10 C 25 30, 25 30, 40 50" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M40 10 C 25 30, 25 30, 10 50" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <h1>Login</h1>
+
+        <div class="input-group">
+            <div class="icon-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            <input type="email" placeholder="Email">
+        </div>
+
+        <div class="input-group">
+            <div class="icon-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </div>
+            <input type="password" placeholder="Senha">
+        </div>
+
+        <hr class="divider">
+
+        <div class="form-options">
+            <label>
+                <input type="radio" name="lembrar"> Lembrar-me
+            </label>
+            <a href="esqsenha.html">Esqueceu a senha?</a>
+        </div>
+<a href="vagas.html">
+        <button class="btn-logar">Logar</button>
+</a>
+        <div class="register-text">
+            Não tem uma conta? <a href="cadusuario.html">Cadastre-se</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

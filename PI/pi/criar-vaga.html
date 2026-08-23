@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { background: #23103a; color: #b179eb; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { display: flex; gap: 40px; width: 900px; }
+        
+        /* Lado Esquerdo - Imagem */
+        .left-side { display: flex; flex-direction: column; gap: 15px; }
+        .img-box { width: 350px; height: 350px; background: white; border-radius: 20px; display: flex; align-items: center; justify-content: center; }
+        .btn-upload { background: linear-gradient(90deg, #8b4dc1, #5d2b8e); color: white; padding: 10px; border-radius: 20px; text-align: center; cursor: pointer; }
+
+        /* Lado Direito - Formulário */
+        .right-side { display: flex; flex-direction: column; gap: 15px; flex: 1; }
+        input, textarea { 
+            background: white; border: none; padding: 15px; border-radius: 15px; 
+            width: 100%; color: #b179eb; font-family: inherit;
+        }
+        
+        /* Botão Principal */
+        .btn-submit { 
+            grid-column: span 2; padding: 20px; border-radius: 20px; border: none; 
+            background: linear-gradient(90deg, #8b4dc1, #5d2b8e); color: white; 
+            font-size: 1.2rem; cursor: pointer; margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="left-side">
+        <div class="img-box">
+            <!-- Ícone de loading sugerido em image_0d2ee2.png -->
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="#b179eb"><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div class="btn-upload">Carregar Imagem</div>
+    </div>
+
+    <div class="right-side">
+        <input type="text" placeholder="Título da Vaga">
+        <textarea rows="4" placeholder="Descrição"></textarea>
+        <textarea rows="2" placeholder="Requisitos"></textarea>
+        <input type="text" placeholder="Sálário">
+        <input type="text" placeholder="Benefícios">
+    </div>
+</div>
+
+<!-- Botão fixo inferior -->
+<div style="position: fixed; bottom: 50px; width: 800px;">
+    <button class="btn-submit">Criar Vaga</button>
+</div>
+
+</body>
+</html>
