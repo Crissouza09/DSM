@@ -35,9 +35,9 @@ int main()
         int indice = escolha - 1;
         
         printf("\n--- Informacoes do Pokemon ---\n");
-        printf("Nome: %s\n", nomes[indice]);
-        printf("Tipo: %s\n", tipos[indice]);
-        
+        printf("Nome: %s\n", nomes[indice]); // para otimizar o código, trazer o indice
+        printf("Tipo: %s\n", tipos[indice]);// direto no print ficando: printf("Nome: %s\n", nomes[escolha - 1])
+                                            // e printf("Tipo: %s\n", tipos[escolha - 1])                                
     } else{
         printf("\nOpcao invalida! Escolha um numero entre 1 e 5.\n");
     }
